@@ -1,0 +1,68 @@
+:root {
+  --bg: #F5F5F2;
+  --surface: #FFFFFF;
+  --surface-2: #F0F0EC;
+  --surface-3: #F7F7F4;
+  --input-bg: #FFFFFF;
+  --border: #E3E3DF;
+  --row: #EDEDEA;
+  --control: #D4D4CF;
+  --text: #18181B;
+  --muted: #5F5F5A;
+  --faint: #75756F;
+  --bar: #A8A8A2;
+
+  --lime: #D7FF3F;
+  --lime-hover: #E9FF8A;
+  --on-lime: #0E0E0C;
+
+  --pos: #4D6600;
+  --pos-bg: #EEF7D2;
+  --neg: #C2410C;
+  --neg-bg: #FDEEE6;
+  --neg-btn: #C2410C;
+  --neg-btn-hover: #9A3412;
+  --on-neg-btn: #FFFFFF;
+
+  --err: #B42318;
+  --err-bg: #FDF1F0;
+  --err-border: #F5C2BE;
+  --ok-bg: #F6FBE8;
+  --ok-border: #CFE59A;
+
+  --font: 'Geist', system-ui, sans-serif;
+  --mono: 'Geist Mono', ui-monospace, monospace;
+  --display: 'Bricolage Grotesque', var(--font);
+
+  color-scheme: light;
+}
+[data-theme='escuro'] {
+  --bg: #0E0E0C;
+  --surface: #161614;
+  --surface-2: #222220;
+  --surface-3: #1C1C1A;
+  --input-bg: #0E0E0C;
+  --border: #262624;
+  --row: #1F1F1D;
+  --control: #3A3A36;
+  --text: #F4F3EE;
+  --muted: #A3A29A;
+  --faint: #8A897F;
+  --bar: #4A4A45;
+
+  --pos: #D7FF3F;
+  --pos-bg: #232A10;
+  --neg: #FF7A45;
+  --neg-bg: #2E1A10;
+  --neg-btn: #FF7A45;
+  --neg-btn-hover: #FF9A70;
+  --on-neg-btn: #0E0E0C;
+
+  --err: #F87171;
+  --err-bg: #1E1312;
+  --err-border: #5A2420;
+  --ok-bg: #161A0C;
+  --ok-border: #3A4A12;
+
+  color-scheme: dark;
+}
