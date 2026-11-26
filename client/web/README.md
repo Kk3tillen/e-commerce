@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Front-end — Controle de Produtos e Estoque
 
-## Getting Started
+Front-end em **Nuxt 4** (modo SPA) para o sistema de controle de produtos e estoque.
+Ele **não contém regra de negócio**: só exibe telas e chama a API REST.
 
-First, run the development server:
+## Rodando
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Telas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Caminho      | Tela               | Endpoint consumido                          |
+|--------------|--------------------|---------------------------------------------|
+| `/`          | Visão geral        | (apenas histórico local da sessão)          |
+| `/produtos`  | Produtos cadastrados | `GET /loja/produto` (fora da especificação) |
+| `/cadastrar` | Cadastrar produto  | `POST /loja/produto`                        |
+| `/consultar` | Consultar estoque  | `GET /loja/produto/{codigo}/estoque`        |
+| `/entrada`   | Entrada de estoque | `PUT /loja/produto/{codigo}/entrada`        |
+| `/saida`     | Saída de estoque   | `PUT /loja/produto/{codigo}/saida`          |
+| `/venda`     | Registrar venda    | `POST /loja/venda`                          |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+O botão de sol/lua na barra alterna entre **modo claro** e **modo escuro**.
 
-## Learn More
+## Ligando a API
 
-To learn more about Next.js, take a look at the following resources:
+Os endpoints ainda **não estão ligados**: cada função em `app/services/api.ts`
+lança um erro, e as telas mostram a mensagem "Não foi possível concluir".
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para ligar um endpoint, abra `app/services/api.ts`, encontre a função
+correspondente e **troque o `throw` pela linha `$fetch` comentada**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```ts
+async consultarEstoque(codigo: number): Promise<EstoqueResposta> {
+  return $fetch<EstoqueResposta>(`/loja/produto/${codigo}/estoque`, { baseURL: base() })
+},
+```
 
-## Deploy on Vercel
+O endereço da API fica em `nuxt.config.ts` (`runtimeConfig.public.apiBase`,
+padrão `http://localhost:8080`) e pode ser trocado sem mexer no código:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+NUXT_PUBLIC_API_BASE=http://localhost:8081 npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> Lembre de habilitar **CORS** no backend para a origem `http://localhost:3000`.
+
+## Estrutura
+
+```
+app/
+├─ assets/css/main.css      # tokens de cor (claro/escuro) e estilos
+├─ components/               # AppNav, PageHeader, AlertBox, QtyInput, MovimentacaoForm, AppIcon
+├─ composables/              # useTheme (tema), useAtividade (histórico da sessão)
+├─ layouts/default.vue       # barra de navegação + conteúdo
+├─ pages/                    # uma página por operação
+├─ services/
+│  ├─ api.ts                 # ← único ponto de contato com a API
+│  └─ types.ts               # tipos iguais aos JSON da especificação
+└─ utils/format.ts           # moeda, conversão de números, mensagens de erro
+```

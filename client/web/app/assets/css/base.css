@@ -1,0 +1,25 @@
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--pos); }
+.mono { font-family: var(--mono); }
+.text-pos { color: var(--pos); }
+.text-neg { color: var(--neg); }
+.text-muted { color: var(--muted); }
+.container {
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 8px 32px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (max-width: 640px) {
+  .container { padding: 8px 16px 40px; }
+}
