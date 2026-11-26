@@ -16,7 +16,7 @@ export const api = {
   },
 
   async consultarEstoque(codigo: number): Promise<EstoqueResposta> {
-    return naoImplementado('')
+    return $fetch<EstoqueResposta>(`/loja/produto/${codigo}/estoque`, { baseURL: base() })
   },
 
   async entradaEstoque(codigo: number, quantidade: number): Promise<EstoqueResposta> {
