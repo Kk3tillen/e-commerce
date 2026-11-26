@@ -17,20 +17,6 @@ Trabalho acadêmico da **UFRN**, desenvolvido em equipe com **GitFlow**, issues 
 
 ---
 
-## 📑 Sumário
-
-- [Sobre o trabalho](#-sobre-o-trabalho)
-- [Funcionalidades](#-funcionalidades)
-- [Arquitetura](#-arquitetura)
-- [API REST](#-api-rest)
-- [Tecnologias](#-tecnologias)
-- [Como rodar](#-como-rodar)
-- [Estrutura de pastas](#-estrutura-de-pastas)
-- [Fluxo de trabalho (GitFlow)](#-fluxo-de-trabalho-gitflow)
-- [Andamento](#-andamento)
-
----
-
 ## 📖 Sobre o trabalho
 
 O objetivo é construir uma pequena loja com **controle de estoque**, separando bem as responsabilidades:
