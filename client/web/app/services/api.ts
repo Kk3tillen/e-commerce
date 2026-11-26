@@ -8,11 +8,11 @@ const naoImplementado = (endpoint: string): never => {
 
 export const api = {
   async cadastrarProduto(body: { codigo: number; preco: number }): Promise<Produto> {
-    return naoImplementado('')
+    return $fetch<Produto>('/loja/produto', { baseURL: base(), method: 'POST', body })
   },
 
   async listarProdutos(): Promise<Produto[]> {
-    return naoImplementado('')
+    return $fetch<Produto[]>('/loja/produto', { baseURL: base() })
   },
 
   async consultarEstoque(codigo: number): Promise<EstoqueResposta> {
@@ -31,5 +31,3 @@ export const api = {
     return naoImplementado('')
   },
 }
-
-void base
